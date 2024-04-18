@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  mage_spark:
+    image: mage_spark
+    ports:
+      - "6789:6789"
+    env_file:
+      - .env     
+    volumes:
+      - .:/home/src/
+      - ${HOME}/.gc/gcp_auth.json:/home/src/gcp_auth.json
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS: /home/src/gcp_auth.json
+    command: /app/run_app.sh mage start ${MAGE_PROJECT_NAME}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure:5 
