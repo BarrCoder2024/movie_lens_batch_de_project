@@ -152,9 +152,9 @@ $ cd zoom-project
 
 - Setup a JSON file:
 ```
-	$ mkdir -p ~/.gc
-	$ touch ~/.gc/gcp_auth.json
-	$ nano ~/.gc/gcp_auth.json
+$ mkdir -p ~/.gc
+$ touch ~/.gc/gcp_auth.json
+$ nano ~/.gc/gcp_auth.json
 ```
 [**Note:**  ctrl + O to save | ctrl+X to exit]
 
