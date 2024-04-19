@@ -8,8 +8,8 @@
 
 Click **Create New Token**:
   
-![step_1_1](step_1_1.png)
-![step_1_2](step_1_2.png)
+![step_1_1](pics/step_1_1.png)
+![step_1_2](pics/step_1_2.png)
 
 A JSON file with a username and key will be generated:
 
@@ -39,30 +39,30 @@ Give the new project a name (I called mine **zoom-de-project**)
  
 Make a note of the Project ID (mine is **zoom-de-project-id2**) 
 
-![step_2_1](step_2_1.png)
+![step_2_1](pics/step_2_1.png)
 
 - Create an IAM Service account 
 
-![step_2_2](step_2_2.png)
+![step_2_2](pics/step_2_2.png)
 
 (I called mine **zoom-de-service-account**)
 
-![step_2_3](step_2_3.png)
+![step_2_3](pics/step_2_3.png)
  
-Press Create And Continue & set up the following roles:
+Press **Create And Continue** & set up the following roles:
 
 - **BigQuery Admin**
 - **Storage Admin**
 - **Storage Object Admin**
 - **Viewer**
 
-![step_2_4](step_2_4.png)
+![step_2_4](pics/step_2_4.png)
 
 **Create Service Account key** 
 
-![step_2_5](step_2_5.png)
+![step_2_5](pics/step_2_5.png)
 
-Download the Service Account Key and store it in $HOME/.gc /
+Download the Service Account Key, rename it to **gcp_auth.json** and store it in **$HOME/.gc /**
 
 ```
 $HOME/.gc /gcp_auth.json
@@ -76,9 +76,9 @@ $HOME/.gc /gcp_auth.json
 - **Identity and Access Management (IAM) API**
 - **IAM Service Account Credentials API**
 
-![step_2_6](step_2_6.png)
+![step_2_6](pics/step_2_6.png)
 
-These can be found [here](https://cloud.google.com/apis)
+The APIs can be found [here](https://cloud.google.com/apis)
 
 ## Step 3 - Create SSH Keys to Access VM
 
@@ -86,13 +86,13 @@ The SSH key is used to login to our GCP VM instance.
 
 In the GCP console, choose **Compute Engine** from the menu on the left.
 
-Then access Metadata and proceed to the **SSH KEYS** tab.
+Then access **Metadata** and proceed to the **SSH KEYS** tab.
 
-![step_3_1](step_3_1.png)
+![step_3_1](pics/step_3_1.png)
  
 Click on the **ADD SSH KEY button**.
 
-![step_3_2](step_3_2.png)
+![step_3_2](pics/step_3_2.png)
 
 Paste the public key into the designated field and save your changes by clicking the **SAVE** button.
 
@@ -102,22 +102,23 @@ Paste the public key into the designated field and save your changes by clicking
 1.	Open the Windows 10 Start menu and search for “Apps & Features”. 
 In the “Apps & Features” heading, click “Optional Features”.
 
-![step_3_3](step_3_3.png)
+![step_3_3](pics/step_3_3.png)
  
 2.	Scroll down the list to see if “OpenSSH Client” is listed.  If not, click the plus sign next to “Add a feature”, select OpenSSH Client, and click “Install”.
  
-![step_3_4](step_3_4.png)
+![step_3_4](pics/step_3_4.png)
 
 3.	In the command prompt, use the ssh-keygen command:
 
-![step_3_5](step_3_5.png)
+![step_3_5](pics/step_3_5.png)
 
-By default, the system will save the keys to [your home directory]/.ssh/id_rsa. 
+By default, the system will save the keys to **[your home directory]/.ssh/id_rsa** 
 
 4.	The system will now generate the key pair and display the key fingerprint and a randomart image. These fingerprints are not needed in day-to-day use of your keys but can be saved to your notes to identify your keys later if needed.
 
 5.	Open your file explorer.  You can now navigate to the hidden “.ssh” directory in your home folder. You should see two new files. The identification is saved in the id_rsa file and the public key is labeled id_rsa.pub. This is your SSH key pair. They are both saved in plain text.
-![step_3_6](step_3_6.png)
+
+![step_3_6](pics/step_3_6.png)
 
 
 ## Step 4 - Create VM
@@ -125,18 +126,18 @@ By default, the system will save the keys to [your home directory]/.ssh/id_rsa.
 1.	From your project's dashboard, go to Cloud Compute > VM instance
 2.	Create a new instance:
 
-![step_4_1](step_4_1.png)
+![step_4_1](pics/step_4_1.png)
 
 
-- Choose name de-project-vm
-- Pick Region europe-west2 (London)
-- Pick Zone europe-west2-c
-![step_4_2](step_4_2.png)
-- Pick a E2 series instance. I went with a e2-highmem-4 (4 vCPU, 2 core, 32 GB memory)
-![step_4_3](step_4_3.png)
-- Change the boot disk to Ubuntu. The Ubuntu 20.04 LTS version & choose 30GB of storage.
-![step_4_4](step_4_4.png)
-![step_4_5](step_4_5.png)
+- Choose name **de-project-vm**
+- Pick **Region europe-west2 (London)**
+- Pick Zone **europe-west2-c**
+![step_4_2](pics/step_4_2.png)
+- Pick a **E2 series** instance. I went with a **e2-highmem-4 (4 vCPU, 2 core, 32 GB memory)**
+![step_4_3](pics/step_4_3.png)
+- Change the boot disk to **Ubuntu**. The **Ubuntu 20.04 LTS** version & choose 30GB of storage.
+![step_4_4](pics/step_4_4.png)
+![step_4_5](pics/step_4_5.png)
 - Leave all other settings on their default value and click on **Create**.
 
 ## Step 5 - Install Packages on GCP VM Instance
@@ -155,7 +156,7 @@ $ cd zoom-project
 	$ touch ~/.gc/gcp_auth.json
 	$ nano ~/.gc/gcp_auth.json
 ```
-[Note:  ctrl + O to save ctrl+X to exit]
+[**Note:**  ctrl + O to save | ctrl+X to exit]
 
 
 - Activate environment Variables:
@@ -163,14 +164,14 @@ $ cd zoom-project
 $ echo 'export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/gcp_auth.json' >> ~/.bashrc 
 $ . ~/.bashrc
 ```
-- Install Docker
+- **Install Docker**
 ```
 $ cd ~  
 $ sudo apt-get update  
 $ sudo apt-get install -y docker.io 
 $ sudo service docker.io restart
 ```
-- Install Docker compose 
+- **Install Docker compose** 
 
 ```
 $ mkdir bin 
@@ -184,7 +185,7 @@ $ sudo service docker restart
 ```
 
 
-- Install Terraform
+- **Install Terraform**
 
 ```
 $ cd bin 
@@ -197,22 +198,23 @@ $ rm terraform_1.8.0_linux_amd64.zip
 ## Step 6 – Start up
 
 ### Using Terraform to set up GCS & BQ
-#To initiate, plan and apply the necessary infrastructure, please execute the following Terraform commands, adjusting as needed. Please provide the ID of your project.
+
+To initiate plan and apply the necessary infrastructure, execute the following Terraform commands.
 ```
 $ cd ~/zoom-project/terraform/
 ```
-[NEED TO ADD NANO THE VARIABLES FILE FOR TERRAFORM ID]
+Input “project id”, bucket names etc
 ```
 $nano variables.tf
 ```
-input “project id” bucket names etc
+
 ```
 $ terraform init
 $ terraform plan   
 $ terraform apply 
 ``` 
 ### Build Mage docker image with Spark environment
-#Add information about your Kaggle API token and gcloud project ID
+
 ```
 $ cd ~/zoom-project/
 $ mv dev.env .env
@@ -232,7 +234,7 @@ $ docker run -it --name mage_spark -e SPARK_MASTER_HOST='local' -p 6789:6789 -v 
 $ cp ~/.gc/gcp_auth.json ~/zoom-project/mage-spark/gcp_auth.json
 ```
 
-![step_6_1](step_6_1.png)
+![step_6_1](pics/step_6_1.png)
 
 ## Step 7 – Running the Pipeline
 
@@ -240,19 +242,19 @@ $ cp ~/.gc/gcp_auth.json ~/zoom-project/mage-spark/gcp_auth.json
 
 - Click on the **Pipelines** option on the left-hand side.
 
-![step_7_1](step_7_1.png)
+![step_7_1](pics/step_7_1.png)
 
 - Click on the **movielens_batch_de_project_pipeline**.
 
-![step_7_2](step_7_2.png)
+![step_7_2](pics/step_7_2.png)
 
 - Click on the **Edit pipeline** option on the left-hand side.
 
-![step_7_3](step_7_3.png)
+![step_7_3](pics/step_7_3.png)
 
 - Click on the **Run block** option on the left-hand side.
 
-![step_7_4](step_7_4.png)
+![step_7_4](pics/step_7_4.png)
 
 - **Note:** Currently investigating why triggers are failing!
 
@@ -260,7 +262,7 @@ $ cp ~/.gc/gcp_auth.json ~/zoom-project/mage-spark/gcp_auth.json
 
 From your project's dashboard, go to Cloud Storage > Buckets
 
-![step_8_1](step_8_1.png)
+![step_8_1](pics/step_8_1.png)
 
 From your project's dashboard, go to BigQuery Studio.
 
@@ -268,7 +270,7 @@ On the left handside click on the project ID **zoom-de-project-id2**
 
 On the left handside click on the dataset **movielens_zoom_dataset**
 
-![step_8_2](step_8_2.png)
+![step_8_2](pics/step_8_2.png)
 
 
 ## Step 9 – Shut it all down!

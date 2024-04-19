@@ -18,6 +18,10 @@ To that end, I decided to use the MovieLens 20M Dataset, with over 20 million mo
 - **Containerization:** [Docker](https://www.docker.com/)
 - **Visualisation:** [Looker Studio](https://lookerstudio.google.com/)
 
+## Architecture
+
+![architecture](architecture/architecture.png)
+
 ## Dataset
 
 The MovieLens 20M Dataset contains 20 million ratings and 465,000 tag applications applied to 27,000 movies by 138,000 users. Each rating consists of a user ID, a movie ID, a rating, and a timestamp indicating when the rating was given.
